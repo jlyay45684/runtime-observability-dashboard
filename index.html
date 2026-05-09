@@ -1,0 +1,81 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Runtime Observability Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Runtime Control Plane</p>
+          <h1>Observability Dashboard</h1>
+        </div>
+        <div class="timestamp" id="generatedAt"></div>
+      </header>
+
+      <main class="grid-layout">
+        <section class="card" aria-label="Runtime metrics">
+          <div class="section-header">
+            <h2>Runtime Metrics</h2>
+          </div>
+          <div class="metrics-grid" id="metricsGrid"></div>
+        </section>
+
+        <section class="card" aria-label="Agent status panel">
+          <div class="section-header">
+            <h2>Agent Runtime Status</h2>
+          </div>
+          <div class="agent-panel" id="agentPanel"></div>
+        </section>
+
+        <section class="card table-card" aria-label="Workflow execution table">
+          <div class="section-header">
+            <h2>Workflow Executions</h2>
+          </div>
+          <div class="table-wrap">
+            <table>
+              <thead>
+                <tr>
+                  <th>workflow_id</th>
+                  <th>status</th>
+                  <th>duration</th>
+                  <th>created_at</th>
+                </tr>
+              </thead>
+              <tbody id="workflowTable"></tbody>
+            </table>
+          </div>
+        </section>
+
+        <section class="card" aria-label="Workflow detail section">
+          <div class="section-header">
+            <h2>Workflow Detail</h2>
+            <span class="badge" id="selectedWorkflow"></span>
+          </div>
+
+          <div class="detail-grid">
+            <article>
+              <h3>Execution Timeline</h3>
+              <ol id="timeline"></ol>
+            </article>
+
+            <article>
+              <h3>Agent Handoff Trace</h3>
+              <ul id="handoffTrace"></ul>
+            </article>
+
+            <article class="log-block">
+              <h3>Structured Runtime Logs</h3>
+              <pre id="runtimeLogs"></pre>
+            </article>
+          </div>
+        </section>
+      </main>
+    </div>
+
+    <script src="app.js"></script>
+  </body>
+</html>
