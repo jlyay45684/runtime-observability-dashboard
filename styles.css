@@ -20,7 +20,7 @@ body {
   color: var(--text);
 }
 
-.app-shell { max-width: 1200px; margin: 0 auto; padding: 1rem; }
+.app-shell { max-width: 1200px; margin: 0 auto; padding: 1rem; animation: shell-breathe 8s ease-in-out infinite; }
 .topbar { display: flex; justify-content: space-between; align-items: flex-end; gap: 1rem; margin-bottom: 1rem; }
 .eyebrow { color: var(--muted); margin: 0; text-transform: uppercase; letter-spacing: 0.08em; font-size: 0.74rem; }
 h1 { margin: 0.25rem 0 0; font-size: 1.7rem; }
@@ -55,6 +55,7 @@ h1 { margin: 0.25rem 0 0; font-size: 1.7rem; }
 .status-pill { font-size: 0.75rem; border-radius: 999px; padding: 0.2rem 0.55rem; border: 1px solid; }
 .ok { color: var(--ok); border-color: color-mix(in srgb, var(--ok) 65%, black); }
 .warn { color: var(--warn); border-color: color-mix(in srgb, var(--warn) 65%, black); }
+.info { color: var(--accent); border-color: color-mix(in srgb, var(--accent) 65%, black); }
 
 .table-wrap { overflow-x: auto; }
 table { width: 100%; border-collapse: collapse; min-width: 620px; }
@@ -69,6 +70,27 @@ ol, ul { margin: 0; padding-left: 1.1rem; color: var(--muted); }
 li { margin-bottom: 0.35rem; }
 .log-block { grid-column: 1 / -1; }
 pre { margin: 0; color: #c0d6ef; font-size: 0.78rem; overflow: auto; }
+
+.pulse-in { animation: pulse-in 0.55s ease-out; }
+.row-enter { animation: row-enter 0.4s ease-out; }
+.timeline-active { color: var(--accent); animation: timeline-glow 1.8s ease-in-out infinite; }
+
+@keyframes pulse-in {
+  from { transform: scale(0.985); opacity: 0.78; }
+  to { transform: scale(1); opacity: 1; }
+}
+@keyframes row-enter {
+  from { opacity: 0; transform: translateY(5px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+@keyframes timeline-glow {
+  0%, 100% { text-shadow: 0 0 0 rgba(56, 189, 248, 0); }
+  50% { text-shadow: 0 0 10px rgba(56, 189, 248, 0.35); }
+}
+@keyframes shell-breathe {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-1px); }
+}
 
 @media (min-width: 900px) {
   .card:nth-child(1) { grid-column: span 8; }
