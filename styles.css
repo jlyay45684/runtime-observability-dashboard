@@ -1,0 +1,139 @@
+:root {
+  --bg: #070b12;
+  --surface: #0f1624;
+  --surface-raised: #141e31;
+  --border: #24324a;
+  --text: #e6eefc;
+  --muted: #8ea2c8;
+  --accent: #5fa8ff;
+  --ok: #3bd58d;
+  --warn: #ffbe5d;
+  --crit: #ff6b7d;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  font-family: Inter, Segoe UI, Roboto, sans-serif;
+  background: radial-gradient(circle at 20% 0%, #111c32, var(--bg) 50%);
+  color: var(--text);
+}
+
+.app-shell {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 1.25rem;
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: end;
+  gap: 1rem;
+  margin-bottom: 1rem;
+}
+
+.eyebrow { text-transform: uppercase; letter-spacing: .12em; color: var(--accent); margin: 0 0 .25rem; font-size: .75rem; }
+h1 { margin: 0; font-size: clamp(1.25rem, 1.8vw, 2rem); }
+.meta { color: var(--muted); font-size: .85rem; }
+
+.dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(12, 1fr);
+  gap: 1rem;
+}
+
+.card {
+  background: linear-gradient(180deg, rgba(255,255,255,0.02), transparent), var(--surface);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 1rem;
+  box-shadow: 0 10px 28px rgba(0, 0, 0, .32), inset 0 1px 0 rgba(255,255,255,.03);
+}
+
+.card-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: .75rem; }
+h2 { margin: 0; font-size: 1rem; }
+
+.telemetry, .timeline { grid-column: span 7; }
+.workflows, .logs { grid-column: span 5; }
+
+.metrics-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(130px, 1fr));
+  gap: .75rem;
+}
+
+.metrics-grid article {
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 10px;
+  padding: .75rem;
+}
+.metrics-grid p { margin: 0 0 .35rem; color: var(--muted); font-size: .82rem; }
+.metrics-grid strong { font-size: 1.2rem; }
+
+.badge {
+  border-radius: 999px;
+  padding: .18rem .55rem;
+  font-size: .75rem;
+  font-weight: 700;
+  border: 1px solid transparent;
+}
+.badge.healthy { color: #0b2f1c; background: var(--ok); }
+.badge.warning { color: #4a2b00; background: var(--warn); }
+.badge.critical { color: #4f0014; background: var(--crit); }
+
+.workflow-list { list-style: none; margin: 0; padding: 0; display: grid; gap: .55rem; }
+.workflow-list li {
+  display: flex; justify-content: space-between; align-items: center;
+  background: var(--surface-raised);
+  border: 1px solid var(--border);
+  border-radius: 9px;
+  padding: .55rem .65rem;
+}
+
+.chip { color: var(--muted); border: 1px solid var(--border); border-radius: 8px; font-size: .72rem; padding: .15rem .45rem; }
+
+.log-stream { font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace; display: grid; gap: .45rem; }
+.log-stream p {
+  margin: 0;
+  display: grid;
+  grid-template-columns: 88px 60px 1fr;
+  gap: .5rem;
+  background: #0a121f;
+  border-left: 3px solid #344861;
+  border-radius: 8px;
+  padding: .45rem .55rem;
+  font-size: .79rem;
+}
+.ts { color: #89a1cb; }
+.lvl { font-weight: 700; letter-spacing: .03em; }
+.lvl.info { color: var(--accent); }
+.lvl.warn { color: var(--warn); }
+.lvl.err { color: var(--crit); }
+
+.timeline-list { margin: 0; padding: .1rem 0 .1rem .2rem; list-style: none; display: grid; gap: .8rem; }
+.timeline-list li { display: grid; grid-template-columns: 18px 1fr; gap: .65rem; align-items: start; position: relative; }
+.timeline-list li:not(:last-child)::after {
+  content: "";
+  position: absolute;
+  left: 8px;
+  top: 20px;
+  width: 2px;
+  height: calc(100% + .4rem);
+  background: #2f405c;
+}
+.node {
+  width: 14px; height: 14px; border-radius: 50%; margin-top: .2rem; border: 2px solid;
+}
+.node.complete { border-color: var(--ok); background: color-mix(in srgb, var(--ok) 35%, transparent); }
+.node.running { border-color: var(--accent); background: color-mix(in srgb, var(--accent) 40%, transparent); box-shadow: 0 0 0 6px rgba(95, 168, 255, .12); }
+.node.waiting { border-color: #5e6f8f; }
+.timeline-list h3 { margin: 0; font-size: .9rem; }
+.timeline-list p { margin: .15rem 0 0; color: var(--muted); font-size: .8rem; }
+
+@media (max-width: 900px) {
+  .telemetry, .timeline, .workflows, .logs { grid-column: span 12; }
+  .topbar { flex-direction: column; align-items: start; }
+}

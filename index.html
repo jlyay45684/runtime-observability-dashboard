@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Runtime Observability Dashboard</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="app-shell">
+      <header class="topbar">
+        <div>
+          <p class="eyebrow">Systems Runtime</p>
+          <h1>Observability Control Plane</h1>
+        </div>
+        <div class="global-status">
+          <span class="badge healthy">Operational</span>
+          <span class="meta">Updated 14s ago</span>
+        </div>
+      </header>
+
+      <main class="dashboard-grid">
+        <section class="card telemetry">
+          <div class="card-header">
+            <h2>Runtime Telemetry</h2>
+            <span class="chip">Live Signal</span>
+          </div>
+          <div class="metrics-grid">
+            <article>
+              <p>Event Throughput</p>
+              <strong>28.4k/s</strong>
+            </article>
+            <article>
+              <p>P95 Latency</p>
+              <strong>142ms</strong>
+            </article>
+            <article>
+              <p>Error Budget</p>
+              <strong>99.83%</strong>
+            </article>
+            <article>
+              <p>Queue Depth</p>
+              <strong>318</strong>
+            </article>
+          </div>
+        </section>
+
+        <section class="card workflows">
+          <div class="card-header">
+            <h2>Workflow Status</h2>
+            <span class="chip">12 Active</span>
+          </div>
+          <ul class="workflow-list">
+            <li><span>Ingestion pipeline</span><span class="badge healthy">Healthy</span></li>
+            <li><span>Policy evaluator</span><span class="badge warning">Degraded</span></li>
+            <li><span>Synthesis agent</span><span class="badge healthy">Healthy</span></li>
+            <li><span>Delivery broker</span><span class="badge critical">Blocked</span></li>
+          </ul>
+        </section>
+
+        <section class="card logs">
+          <div class="card-header">
+            <h2>Runtime Logs</h2>
+            <span class="chip">Tail: 200</span>
+          </div>
+          <div class="log-stream">
+            <p><span class="ts">11:42:02.401</span><span class="lvl info">INFO</span><span>Scheduler assigned 4 workers to workflow/inference-stream.</span></p>
+            <p><span class="ts">11:42:06.033</span><span class="lvl warn">WARN</span><span>Policy evaluator fallback path exceeded threshold by 14ms.</span></p>
+            <p><span class="ts">11:42:09.117</span><span class="lvl info">INFO</span><span>Reconciliation completed for tenant/acme-prod-eu.</span></p>
+            <p><span class="ts">11:42:11.889</span><span class="lvl err">ERROR</span><span>Delivery broker retry limit reached for job #7F2A.</span></p>
+          </div>
+        </section>
+
+        <section class="card timeline">
+          <div class="card-header">
+            <h2>Execution Timeline</h2>
+            <span class="chip">Current Run</span>
+          </div>
+          <ol class="timeline-list">
+            <li>
+              <div class="node complete"></div>
+              <div>
+                <h3>Ingress validation</h3>
+                <p>Completed · 1.3s</p>
+              </div>
+            </li>
+            <li>
+              <div class="node complete"></div>
+              <div>
+                <h3>Dependency resolution</h3>
+                <p>Completed · 2.8s</p>
+              </div>
+            </li>
+            <li>
+              <div class="node running"></div>
+              <div>
+                <h3>Policy execution</h3>
+                <p>Running · 58%</p>
+              </div>
+            </li>
+            <li>
+              <div class="node waiting"></div>
+              <div>
+                <h3>Result dispatch</h3>
+                <p>Queued</p>
+              </div>
+            </li>
+          </ol>
+        </section>
+      </main>
+    </div>
+  </body>
+</html>
